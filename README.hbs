@@ -1,6 +1,6 @@
-# uuid
+# {{noscope repo.name}}
 
-Locally ordered UUID generator
+{{repo.description}}
 
 ## 🧭 Table of contents
 
@@ -37,29 +37,29 @@ No requierments.
 Install using the terminal:
 
 ```cli
-npm install @danielcobo/uuid
+npm install {{repo.name}}
 ```
 
 Require the module:
 
 ```js
-const uuid = require('@danielcobo/uuid');
+const {{noscope repo.name}} = require('{{repo.name}}');
 ```
 
 <sub>**Note:** In case you're wondering, **@danielcobo/** is just a [namespace scope](https://docs.npmjs.com/about-scopes/) - an NPM feature. Scopes make it easier to name modules and improve [security](https://github.blog/2021-02-12-avoiding-npm-substitution-attacks/).</sub>
 
 #### Browser
 
-Declare it as a global variable named uuid by including this script before any script you want to use it in:
+Declare it as a global variable named {{noscope repo.name}} by including this script before any script you want to use it in:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@danielcobo/uuid@1/dist/iife/uuid.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/{{repo.name}}@{{major repo.version}}/dist/iife/{{noscope repo.name}}.min.js"></script>
 ```
 
 Or import it as an [ECMAScript module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import):
 
 ```js
-import * as uuid from 'https://cdn.jsdelivr.net/npm/@danielcobo/uuid@1/dist/esm/uuid.min.js';
+import * as {{noscope repo.name}} from 'https://cdn.jsdelivr.net/npm/{{repo.name}}@{{major repo.version}}/dist/esm/{{noscope repo.name}}.min.js';
 ```
 
 Also, feel free to download the file if you prefer not to use [jsdelivr](https://www.jsdelivr.com). In that case just replace the url with the relative file path.
@@ -75,23 +75,38 @@ uuid("id"); //id1fqiv3sqf00000rce854qeufemti2rgr
 For details see documentation below.
 
 ## 📘 Documentation
-### uuid()
-Generate locally ordered UUIDs
+{{#each definition}}
+### {{this.name}}{{#if this.isTypedef}} : {{{typecode this.type}}}{{/if}}
+{{this.description}}
+{{#unless this.isTypedef}}  
 
 | Name | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
-| [prepend] | `string` | &quot;&quot; | String to start ID with (UUID length becomes 32 + length of this string) |
+{{#each this.param}}
+| {{#if this.optional}}[{{/if}}{{this.name}}{{#if this.optional}}]{{/if}} | {{{typecode this.type}}} | {{this.default}} | {{this.description}} |
+{{/each}}
+{{#if this.returns}}  
 
 #### Returns
 | Type | Description |
 | ---- | ----------- |
-| `string` | UUID |
+| {{{typecode this.returns.type}}} | {{this.returns.description}} |
+{{/if}} 
+{{else}}
 
-<sub>**Source:** [src/index.js:40](https://github.com/danielcobo/uuid/blob/master/src/index.js?plain=1#L40)</sub>
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+{{#each this.property}}
+| {{this.name}} | {{{typecode this.type}}} | {{this.description}} |
+{{/each}} 
+{{/unless}}
+
+<sub>**Source:** [{{this.source.url}}:{{this.source.line}}]({{nogit ../repo.repository.url}}/blob/master/{{this.source.url}}?plain=1#L{{this.source.line}})</sub>
+{{/each}}
 
 ## 🆘 Troubleshooting
 
-If you run into trouble or have questions just [submit an issue](https://github.com/danielcobo/uuid/issues).
+If you run into trouble or have questions just [submit an issue]({{nogit repo.repository.url}}/issues).
 
 ## 🤝 Contributing
 
@@ -137,4 +152,4 @@ If you intend to develop further or contribute code, then please ensure to write
 
 ## ⚖️ License
 
-[MIT License](https://github.com/danielcobo/uuid/blob/master/LICENSE.md)
+[MIT License]({{nogit repo.repository.url}}/blob/master/LICENSE.md)
