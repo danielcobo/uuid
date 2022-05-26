@@ -14,6 +14,7 @@ test('prepend', function () {
   const prepend = 'id';
   const id = uuid(prepend);
   expect(id.slice(0, 2)).toStrictEqual(prepend);
+  expect(id.length).toStrictEqual(32 + prepend.length);
 });
 
 test('no collision for 1 000 000 values', function () {

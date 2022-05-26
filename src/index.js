@@ -73,5 +73,5 @@ module.exports = function UUID(prepend) {
 
   id = [nowTime.toString(32), counterStr, id].join('');
 
-  return prepend || '' + id;
+  return (prepend || '') + id;
 };
